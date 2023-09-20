@@ -1,0 +1,11 @@
+ma_nhan_vien,ho_ten,sdt,dia_chi,ngay_vao_lam,,
+NV11,Bùi Nguyễn Minh Anh,090832719,"Số 37, Phường 5, Quận 11, TP.HCM",1/7/2009,,"insert into NHANVIEN ( MANV,HOTEN,SDT,DCHI,NGVL) VALUES ('NV11','Bùi Nguyễn Minh Anh','090832719','Số 37, Phường 5, Quận 11, TP.HCM','1/7/2009')"
+NV12,Nguyễn Gia  Bảo,033304147,"Số 22, Phường 4, Quận 4, TP.HCM",29/6/2016,,"insert into NHANVIEN ( MANV,HOTEN,SDT,DCHI,NGVL) VALUES ('NV12','Nguyễn Gia  Bảo','033304147','Số 22, Phường 4, Quận 4, TP.HCM','29/6/2016')"
+NV13,Nguyễn Quốc Bảo,097893768,"Số 276, Phường 1, Quận 6, TP.HCM",15/5/2022,,"insert into NHANVIEN ( MANV,HOTEN,SDT,DCHI,NGVL) VALUES ('NV13','Nguyễn Quốc Bảo','097893768','Số 276, Phường 1, Quận 6, TP.HCM','15/5/2022')"
+NV14,Phan Phạm Thế Bảo,093635217,"Số 165, Phường 8, Quận 8, TP.HCM",6/7/2006,,"insert into NHANVIEN ( MANV,HOTEN,SDT,DCHI,NGVL) VALUES ('NV14','Phan Phạm Thế Bảo','093635217','Số 165, Phường 8, Quận 8, TP.HCM','6/7/2006')"
+NV15,Đinh Đặng Nguyệt Cát,081817047,"Số 135, Phường 5, Quận 9, TP.HCM",1/1/2022,,"insert into NHANVIEN ( MANV,HOTEN,SDT,DCHI,NGVL) VALUES ('NV15','Đinh Đặng Nguyệt Cát','081817047','Số 135, Phường 5, Quận 9, TP.HCM','1/1/2022')"
+NV16,Trần Chí  Dĩnh,090893690,"Số 35, Phường 9, Quận 1, TP.HCM",29/7/2000,,"insert into NHANVIEN ( MANV,HOTEN,SDT,DCHI,NGVL) VALUES ('NV16','Trần Chí  Dĩnh','090893690','Số 35, Phường 9, Quận 1, TP.HCM','29/7/2000')"
+NV17,Phạm Quốc Đạt,090485878,"Số 36, Phường 7, Quận 5, TP.HCM",17/8/2000,,"insert into NHANVIEN ( MANV,HOTEN,SDT,DCHI,NGVL) VALUES ('NV17','Phạm Quốc Đạt','090485878','Số 36, Phường 7, Quận 5, TP.HCM','17/8/2000')"
+NV18,Châu Đại Đồng,079333655,"Số 239, Phường 2, Quận 12, TP.HCM",29/12/2016,,"insert into NHANVIEN ( MANV,HOTEN,SDT,DCHI,NGVL) VALUES ('NV18','Châu Đại Đồng','079333655','Số 239, Phường 2, Quận 12, TP.HCM','29/12/2016')"
+NV19,Tạ Trương Phú Hải,093113967,"Số 196, Phường 9, Quận 7, TP.HCM",4/7/2010,,"insert into NHANVIEN ( MANV,HOTEN,SDT,DCHI,NGVL) VALUES ('NV19','Tạ Trương Phú Hải','093113967','Số 196, Phường 9, Quận 7, TP.HCM','4/7/2010')"
+NV20,Nguyễn Ngọc Hân,097797724,"Số 190, Phường 8, Quận 3, TP.HCM",12/4/2003,,"insert into NHANVIEN ( MANV,HOTEN,SDT,DCHI,NGVL) VALUES ('NV20','Nguyễn Ngọc Hân','097797724','Số 190, Phường 8, Quận 3, TP.HCM','12/4/2003')"
