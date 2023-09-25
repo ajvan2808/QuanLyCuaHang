@@ -1,6 +1,5 @@
 flask-sqlalchemy
-PyMySQL~=1.1.0
-faker
-faker-commerce
 uuid~=1.30
 SQLAlchemy==2.0.21
+pyodbc~=4.0.39
+PyMySQL~=1.1.0
