@@ -31,7 +31,7 @@ cursor = mydb.cursor()
 #     reader = csv.reader(file1)
 #     next(reader)  # skip header
 #     for row in reader:
-#         sql = ("INSERT INTO NhanVien (ma_nhan_vien, ho_ten, dien_thoai, dia_chi, ngay_vao_lam)"
+#         sql = ("INSERT INTO NhanVien (quan_ly)"
 #                "VALUES (%s, %s, %s, %s, %s)")
 #         val = (row[0], row[1], row[2], row[3], row[4])
 #         cursor.execute(sql, val)
@@ -73,6 +73,3 @@ cursor = mydb.cursor()
 #         val = (row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[0])
 #         cursor.execute(sql, val)
 #         mydb.commit()
-
-sql = "ALTER TABLE NhanVien ADD COLUMN quan_ly BOOLEAN;"
-

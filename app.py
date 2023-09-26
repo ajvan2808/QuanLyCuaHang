@@ -68,7 +68,7 @@ class DangNhapWindow(Toplevel):
         if nguoi_dung is not None:
             if nv_quan_ly:
                 pass
-                # goi class tk cho trang chinh cua quan ly
+                # goi class tk cho trang cua quan ly
                 # self.trang_quan_ly()
             elif not nv_quan_ly:
                 pass
@@ -151,33 +151,33 @@ class RegisterWindow(Toplevel):
         session.add(nhan_vien_moi)
         session.commit()
 
-    def xuat_tat_ca_san_pham(self):
-        return session.query(SanPham).all()
-
-    def tim_san_pham(self, id_san_pham: str):
-        return session.query(SanPham).get(id_san_pham)
-
-    def them_san_pham(self, san_pham_moi):
-        if self.nguoi_dung_hien_tai and self.nguoi_dung_hien_tai.quan_ly == 1:
-            session.add(san_pham_moi)
-            session.commit()
-        else:
-            raise Exception('Không thể thực hiện! Vui lòng liên hệ Quản lý')
-
-    def cap_nhat_san_pham(self, san_pham_can_cap_nhat):
-        if self.nguoi_dung_hien_tai and self.nguoi_dung_hien_tai.quan_ly == 1:
-            sp = session.query(SanPham).get(san_pham_can_cap_nhat.ma_san_pham)
-            if sp:
-                session.merge(san_pham_can_cap_nhat)
-                session.commit()
-            else:
-                raise Exception('Sản phẩm không tồn tại!')
-        else:
-            raise Exception('Không thể thực hiện! Vui lòng liên hệ Quản lý')
-
-    def xoa_san_pham(self, san_pham_moi):
-        if self.nguoi_dung_hien_tai and self.nguoi_dung_hien_tai.quan_ly == 1:
-            session.delete(san_pham_moi)
-            session.commit()
-        else:
-            raise Exception('Không thể thực hiện! Vui lòng liên hệ Quản lý')
+    # def xuat_tat_ca_san_pham(self):
+    #     return session.query(SanPham).all()
+    #
+    # def tim_san_pham(self, id_san_pham: str):
+    #     return session.query(SanPham).get(id_san_pham)
+    #
+    # def them_san_pham(self, san_pham_moi):
+    #     if self.nguoi_dung_hien_tai and self.nguoi_dung_hien_tai.quan_ly == 1:
+    #         session.add(san_pham_moi)
+    #         session.commit()
+    #     else:
+    #         raise Exception('Không thể thực hiện! Vui lòng liên hệ Quản lý')
+    #
+    # def cap_nhat_san_pham(self, san_pham_can_cap_nhat):
+    #     if self.nguoi_dung_hien_tai and self.nguoi_dung_hien_tai.quan_ly == 1:
+    #         sp = session.query(SanPham).get(san_pham_can_cap_nhat.ma_san_pham)
+    #         if sp:
+    #             session.merge(san_pham_can_cap_nhat)
+    #             session.commit()
+    #         else:
+    #             raise Exception('Sản phẩm không tồn tại!')
+    #     else:
+    #         raise Exception('Không thể thực hiện! Vui lòng liên hệ Quản lý')
+    #
+    # def xoa_san_pham(self, san_pham_moi):
+    #     if self.nguoi_dung_hien_tai and self.nguoi_dung_hien_tai.quan_ly == 1:
+    #         session.delete(san_pham_moi)
+    #         session.commit()
+    #     else:
+    #         raise Exception('Không thể thực hiện! Vui lòng liên hệ Quản lý')
