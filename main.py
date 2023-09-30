@@ -1,5 +1,5 @@
+import sys
 from tkinter import ttk
-
 import app
 import tkinter as tk
 import tkinter.font as tkFont
@@ -33,16 +33,14 @@ class MainApplication(tk.Tk):
         self.register_button = tk.Button(self, text="Đăng ký", command=self.open_register_window,
                                          activebackground="#34a3b0", activeforeground="#ffffff", borderwidth=0,
                                          cursor="pointinghand", font="{San Francisco} 15 {}",)
-        self.logout_button = tk.Button(self, text="Thoát", command=self.open_logout_window,
+        self.exit_button = tk.Button(self, text="Thoát", command=self.exit_window,
                                        activebackground="#34a3b0", activeforeground="#ffffff",
                                        borderwidth=0, cursor="pointinghand", font="{San Francisco} 15 {}", relief="flat",)
 
         # # Align button
         self.login_button.place(anchor="nw", height=40, width=150, x=430, y=450)
         self.register_button.place(anchor="nw", height=40, relx=0.14, width=150, x=430, y=450)
-        self.logout_button.place(anchor="nw", height=40, relx=0.27, width=150, x=450, y=450)
-
-
+        self.exit_button.place(anchor="nw", height=40, relx=0.27, width=150, x=450, y=450)
 
         # Create the frames
         # self.login_frame = tk.Frame(self)
@@ -54,24 +52,18 @@ class MainApplication(tk.Tk):
         # self.register_frame.grid(row=1, column=0)
         # self.logout_frame.grid(row=2, column=0)
 
-    @staticmethod
-    def open_login_window():
-        app.DangNhapWindow()
-        # login_window.mainloop()
+    def open_login_window(self):
+        if app.DangNhapWindow():
+            self.deiconify()
 
-    @staticmethod
-    def open_register_window():
+    def open_register_window(self):
         # Create a new register window
-        register_window = app.RegisterWindow()
-        # Start the mainloop for the register window
-        register_window.mainloop()
+        if app.RegisterWindow():
+            self.deiconify()
 
-    @staticmethod
-    def open_logout_window():
-        # Create a new logout window
-        logout_window = app.LogOutWindow()
-        # Start the mainloop for the logout window
-        logout_window.mainloop()
+    def exit_window(self):
+        self.destroy()
+        sys.exit()
 
 
 if __name__ == "__main__":
