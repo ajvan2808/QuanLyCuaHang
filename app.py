@@ -1,24 +1,8 @@
 import sys
 import tkinter as tk
-from tkinter import messagebox, Toplevel
-# from sqlalchemy.orm import sessionmaker
-# from data.models import *
+from tkinter import messagebox
 from abc import ABC, abstractmethod
-from main import MainApplication as root
 from helpers import *
-
-# Session = sessionmaker(bind=engine)
-# session = Session()
-
-
-# class CongCuQuanLy(ABC):
-#     @abstractmethod
-#     def __init__(self):
-#         self.nhan_vien = NhanVien()
-#         self.san_pham = SanPham()
-#         self.khach_hang = KhachHang()
-#         self.don_hang = DonHang()
-#         self.ctdh = ChiTietDonHang()
 
 
 class PhanMemQuanLy(ABC):
@@ -131,7 +115,7 @@ class DangNhapWindow(tk.Toplevel):
 
         nguoi_dung = check_login_info(username=ten_dang_nhap, pwd=mat_khau)
         if nguoi_dung is not None:
-            if nguoi_dung.chuc_vu == chuc_vu:
+            if nguoi_dung[5] == chuc_vu:
                 messagebox.showinfo('OK', f'Đăng nhập {chuc_vu} thành công')
                 self.destroy()
             else:
@@ -141,37 +125,16 @@ class DangNhapWindow(tk.Toplevel):
 
     def on_exit(self):
         self.destroy()
-
-
-class LogOutWindow(Toplevel):
-    def __init__(self):
-        super().__init__()
-        self.label = tk.Label(self, text="Bạn muốn đăng xuất?")
-        self.yes_button = tk.Button(self, text="Đồng ý", command=self.on_yes)
-        self.no_button = tk.Button(self, text="Không", command=self.on_no)
-
-        # Pack the widgets
-        self.label.pack()
-        self.yes_button.pack()
-        self.no_button.pack()
-
-    def on_yes(self):
-        self.destroy()
-        DangNhapWindow()
-
-    def on_no(self):
-        self.destroy()
         
 
 class RegisterWindow(tk.Toplevel):
     def __init__(self):
         super().__init__()
-        self.title("Đăng Ký")
-        self.configure(
-            background="#f6f9fd",
-            borderwidth=0,)
+
+        self.configure(background="#f6f9fd", borderwidth=0)
         self.geometry("700x500")
         self.resizable(True, True)
+        self.title("Đăng Ký")
 
         self.ma_nv_label = tk.Label(self)
         self.ma_nv_label.configure(
@@ -309,6 +272,8 @@ class RegisterWindow(tk.Toplevel):
         self.register_button.place(anchor="nw", height=30, relx=0.45, rely=0.70, width=110, x=0, y=0)
         self.cancel_button.place(anchor="nw", height=30, relx=0.23, rely=0.70, width=100, x=0, y=0)
 
+        self.mainloop()
+
     def on_register(self):
         ma_nv = self.ma_nv_entry.get()
         ho_ten = self.ten_nv_entry.get()
@@ -319,7 +284,8 @@ class RegisterWindow(tk.Toplevel):
 
         new_user = create_user(ma_nv, ho_ten, sdt, dia_chi, ngay_lam, vi_tri)
         if new_user is not None:
-            messagebox.showinfo('Thành công', f'{new_user.__str__()}')
+            messagebox.showinfo('Thành công', f'Mã nhân viên: {new_user[0]}'
+                                                            f'Tên nhân viên: {new_user[1]}')
             self.destroy()
         else:
             messagebox.showerror('Tạo nhân viên không thành công!')
