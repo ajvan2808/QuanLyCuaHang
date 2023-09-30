@@ -76,7 +76,7 @@ class NhanVien(Base):
     dien_thoai = Column(String(50), nullable=False)
     dia_chi = Column(String(200), nullable=True)
     ngay_vao_lam = Column(String(200), nullable=False)
-    quan_ly = Column(BOOLEAN(), nullable=False)
+    chuc_vu = Column(String(50), nullable=False)
     _don_hang = relationship('DonHang', back_populates='_nhan_vien')
 
     def __str__(self):
