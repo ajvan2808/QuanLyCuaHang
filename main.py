@@ -42,8 +42,7 @@ class MainApplication(tk.Tk):
         self.register_button.place(anchor="nw", height=40, relx=0.14, width=150, x=430, y=450)
         self.exit_button.place(anchor="nw", height=40, relx=0.27, width=150, x=450, y=450)
 
-        # Create the frames
-        # self.login_frame = tk.Frame(self)
+        # Create sub frames
         # self.register_frame = tk.Frame(self)
         # self.logout_frame = tk.Frame(self)
 
@@ -54,7 +53,7 @@ class MainApplication(tk.Tk):
 
     def open_login_window(self):
         if app.DangNhapWindow():
-            self.deiconify()
+            self.destroy()
 
     def open_register_window(self):
         # Create a new register window

@@ -1,8 +1,12 @@
 import sys
 import tkinter as tk
+from tkinter import ttk
 from tkinter import messagebox
 from abc import ABC, abstractmethod
 from helpers import *
+from PIL import ImageTk, Image
+
+globrole = 1
 
 
 class PhanMemQuanLy(ABC):
@@ -76,7 +80,7 @@ class DangNhapWindow(tk.Toplevel):
 
         self.user_role_var = tk.StringVar(value="Nhân viên")
         self.user_role_options = ["Quản lý", "Nhân viên"]
-        self.user_type_dropdown = tk.OptionMenu(self, self.user_role_var, *self.user_role_options, command=None)
+        self.user_type_dropdown = tk.OptionMenu(self, self.user_role_var, *self.user_role_options)
 
         self.login_button = tk.Button(self)
         self.login_button.configure(
@@ -105,6 +109,8 @@ class DangNhapWindow(tk.Toplevel):
         self.user_type_dropdown.place(anchor="nw",height=26,relx=0.36,rely=0.42,width=150,x=0,y=0)
         self.login_button.place(anchor="nw", height=30, relx=0.54, rely=0.7, width=100, x=0, y=0)
         self.exit_button.place(anchor="nw", height=30, relx=0.26, rely=0.7, width=100, x=0, y=0)
+
+        self.login_succeed = False
 
         self.mainloop()
 
@@ -292,3 +298,202 @@ class RegisterWindow(tk.Toplevel):
 
     def on_cancel(self):
         self.destroy()
+
+
+# ADMIN WINDOW
+class AdminWindow(tk.Toplevel):
+    def __init__(self):
+        super().__init__()
+
+        self.frame = tk.Frame(self, bg="#006400")
+        self.frame.pack()
+        self.Frame1 = tk.LabelFrame(self.frame, bg="white", height=180, width=700, borderwidth=2)
+        self.Frame1.grid(row=0, column=0, sticky="w", padx=0, pady=0)
+        self.photo = Image.open("data/hinhnen.jpg")
+        self.photo.resize((700, 400))
+        self.image = ImageTk.PhotoImage(self.photo)
+        self.imageLable = tk.Label(self.Frame1, image=self.image, height=190, width=700)
+        self.imageLable.pack()
+
+        self.frame2 = tk.LabelFrame(self.frame, bg="white", text="Thông tin", borderwidth=5)
+        self.frame2.grid(row=1, column=0, sticky="w", padx=10)
+
+        self.mspLabel = tk.Label(self.frame2, text="MÃ SẢN PHẨM", font=("Time New Roman", 10), bg="white", anchor="w",
+                              width=15)
+        self.tenLabel = tk.Label(self.frame2, text="TÊN SẢN PHẨM", font=("Time New Roman", 10), bg="white", anchor="w",
+                              width=15)
+        self.giaLabel = tk.Label(self.frame2, text="GIÁ", anchor="w", font=("Time New Roman", 10), bg="white", width=15)
+        self.nuocsxLabel = tk.Label(self.frame2, text="NƯỚC SẢN XUẤT", font=("Time New Roman", 10), bg="white", anchor="w",
+                                 width=15)
+        self.hsdLabel = tk.Label(self.frame2, text="HẠN SỬ DỤNG", font=("Time New Roman", 10), bg="white", anchor="w",
+                              width=15)
+        self.dvtLabel = tk.Label(self.frame2, text="ĐƠN VỊ TÍNH", font=("Time New Roman", 10), bg="white", anchor="w",
+                              width=15)
+
+        self.mspLabel.grid(row=0, column=0, padx=10)
+        self.tenLabel.grid(row=1, column=0, padx=10)
+        self.giaLabel.grid(row=2, column=0, padx=10)
+        self.nuocsxLabel.grid(row=3, column=0, padx=10)
+        self.hsdLabel.grid(row=4, column=0, padx=10)
+        self.dvtLabel.grid(row=5, column=0, padx=10)
+
+        self.mspEntry = tk.Entry(self.frame2, width=58)
+        self.tenEntry = tk.Entry(self.frame2, width=58)
+        self.giaEntry = tk.Entry(self.frame2, width=58)
+        self.nuocsxEntry = tk.Entry(self.frame2, width=58)
+        self.hsdEntry = tk.Entry(self.frame2, width=58)
+        self.dvtEntry = tk.Entry(self.frame2, width=58)
+
+        self.mspEntry.grid(row=0, column=2, padx=5, pady=5)
+        self.tenEntry.grid(row=1, column=2, padx=5, pady=5)
+        self.giaEntry.grid(row=2, column=2, padx=5, pady=5)
+        self.nuocsxEntry.grid(row=3, column=2, padx=5, pady=5)
+        self.hsdEntry.grid(row=4, column=2, padx=5, pady=5)
+        self.dvtEntry.grid(row=5, column=2, padx=5, pady=5)
+
+        self.frame3 = tk.LabelFrame(self.frame,bg="white", borderwidth=2)
+        self.frame3.grid(row=1, column=0, sticky="w", padx=570, pady=10)
+
+        self.addButton = tk.Button(self.frame3, text="Thêm",relief="ridge",activeforeground="black",width=6, borderwidth=3,font=("Time New Roman",10), bg="#a0522d", fg='white', command=self.add)
+        self.updateButton = tk.Button(self.frame3, text="Sửa",relief="ridge",activeforeground="black", width=6, borderwidth=3, bg="#a0522d",font=("Time New Roman",10), fg='white', command=self.update)
+        self.deleteButton = tk.Button(self.frame3, text="Xoá",relief="ridge",activeforeground="black", width=6, borderwidth=3,font=("Time New Roman",10), bg="#a0522d", fg='white', command=self.delete)
+        self.findButton = tk.Button(self.frame3, text="Tìm kiếm",relief="ridge",activeforeground="black", width=6, borderwidth=3,font=("Time New Roman",10), bg="#a0522d", fg='white', command=self.find)
+        self.veiwButton = tk.Button(self.frame3, text="Xem",relief="ridge",activeforeground="black", width=6, borderwidth=3,font=("Time New Roman",10), bg="#a0522d", fg='white', command=self.view)
+
+        self.addButton.grid(row=0, column=1, padx=4, pady=4)
+        self.veiwButton.grid(row=1, column=1, padx=4, pady=4)
+        self.updateButton.grid(row=2, column=1, padx=4, pady=4)
+        self.deleteButton.grid(row=3, column=1, padx=4, pady=4)
+        self.findButton.grid(row=4, column=1, padx=4, pady=4)
+
+        self.my_tree = ttk.Treeview(self.frame, columns=("MASP", "TENSP", "DVT", "NUOCSX", "HANSD", "GIA"),
+                                    show='headings', height=12)
+        self.my_tree.grid(row=2, column=0, sticky="w", padx=0, pady=0)
+
+        self.my_tree.column("MASP", anchor='w', width=100)
+        self.my_tree.column("TENSP", anchor='w', width=160)
+        self.my_tree.column("DVT", anchor='w', width=110)
+        self.my_tree.column("NUOCSX", anchor='w', width=110)
+        self.my_tree.column("HANSD", anchor='w', width=110)
+        self.my_tree.column("GIA", anchor='w', width=110)
+
+        self.my_tree.heading("MASP", text="MÃ SẢN PHẨM", anchor='w')
+        self.my_tree.heading("TENSP", text="TÊN SẢN PHẨM", anchor='w')
+        self.my_tree.heading("DVT", text="ĐƠN VỊ TÍNH", anchor='w')
+        self.my_tree.heading("NUOCSX", text="NƯỚC SẢN XUẤT", anchor='w')
+        self.my_tree.heading("HANSD", text="HẠN SỬ DỤNG", anchor='w')
+        self.my_tree.heading("GIA", text="GIÁ", anchor='w')
+
+        if globrole == 0:
+            self.updateButton.destroy()
+            self.deleteButton.destroy()
+            self.addButton.destroy()
+        else:
+            pass
+
+
+    def view(self):
+        for data in self.my_tree.get_children():
+            self.my_tree.delete(data)
+        for row in read():
+            row_to_list = [row[0], row[1], row[2], row[3], row[4], row[5]]
+            self.my_tree.insert('', 'end', iid=row[0], values=row_to_list, tags="bg")
+            self.my_tree.tag_configure("bg", background="#f0fff0")
+
+    def add(self):
+        maSP = str(self.mspEntry.get()).strip()
+        tenSP = str(self.tenEntry.get()).strip()
+        dvt = str(self.dvtEntry.get()).strip()
+        gia = str(self.giaEntry.get()).strip()
+        nuocSX = str(self.nuocsxEntry.get()).strip()
+        hsd = str(self.hsdEntry.get()).strip()
+
+        if not maSP or not tenSP or not dvt or not gia or not nuocSX or not hsd:
+            messagebox.showwarning("Thông báo", "Điền đầy đủ thông tin")
+            return
+        try:
+            result = add_data_admin(ma_sp=maSP)
+            if result is not None:
+                messagebox.showwarning("Thông báo", "Mã sản phẩm này đã tồn tại")
+                return
+            else:
+                if create_product(maSP, tenSP, dvt, nuocSX, hsd, gia):
+                    messagebox.showinfo("Thông báo", "Đã thêm dữ liệu")
+                    for data in self.my_tree.get_children():
+                        self.my_tree.delete(data)
+                    for row in read():
+                        row_to_list = [row[0], row[1], row[2], row[3], row[4], row[5]]
+                        self.my_tree.insert('', 'end', iid=row[0], values=row_to_list, tags='bg')
+                        self.my_tree.tag_configure("bg", background="#f0fff0")
+        except InterruptedError:
+            messagebox.showwarning("Thông báo", "Lỗi")
+            return
+
+    def update(self):
+        maSP = str(self.mspEntry.get()).strip()
+        tenSP = str(self.tenEntry.get()).strip()
+        dvt = str(self.dvtEntry.get()).strip()
+        gia = str(self.giaEntry.get()).strip()
+        nuocSX = str(self.nuocsxEntry.get()).strip()
+        hsd = str(self.hsdEntry.get()).strip()
+
+        if not maSP or not tenSP or not dvt or not gia or not nuocSX or not hsd:
+            messagebox.showwarning("Thông báo", "Điền đầy đủ thông tin!")
+            return
+        sp_hien_tai = get_product(maSP)
+        if sp_hien_tai is not None:
+            messagebox.showwarning("Thông báo", "Không tồn tại mã sản phẩm này")
+            return
+        else:
+            try:
+                if update_product(tenSP, dvt, nuocSX, hsd, gia, maSP):
+                    messagebox.showinfo("Thông báo", "Cập nhật thành công")
+                    for data in self.my_tree.get_children():
+                        self.my_tree.delete(data)
+                    for row in read():
+                        row_to_list = [row[0], row[1], row[2], row[3], row[4], row[5]]
+                        self.my_tree.insert('', 'end', iid=row[0], values=row_to_list, tags="bg")
+                        self.my_tree.tag_configure("bg", background="#f0fff0")
+                else:
+                    messagebox.showwarning("Thông báo", "Cập nhật không thành công")
+            except InterruptedError:
+                messagebox.showwarning("Thông báo", "Lỗi")
+
+    def delete(self):
+        try:
+            if (self.my_tree.selection()[0]):
+                result = messagebox.askquestion("Xoá sản phẩm", "Bạn muốn xoá dữ liệu này?", icon='warning')
+                if (result != 'yes'):
+                    return
+                else:
+                    san_pham = self.my_tree.selection()[0]
+                    maSP = str(self.my_tree.item(san_pham)['values'][0])
+                    if delete_product(maSP):
+                        messagebox.showinfo("Thông báo", "Dữ liệu đã xoá")
+                        self.my_tree.delete(san_pham)
+        except InterruptedError:
+            messagebox.showinfo("Thông báo", "Chưa chọn dữ liệu")
+
+    def find(self):
+        maSP = str(self.mspEntry.get()).strip()
+        tenSP = str(self.tenEntry.get()).strip()
+        sp = tuple()
+
+        if maSP:
+            sp = search_product_by_id(maSP)
+
+        elif tenSP:
+            sp = search_product_by_name(tenSP)
+
+        try:
+            for data in self.my_tree.get_children():
+                self.my_tree.delete(data)
+            if not sp:
+                messagebox.showwarning("Thông báo", "Không tìm được dữ liệu")
+            else:
+                for row in sp:
+                    row_to_list = [row[0], row[1], row[2], row[3], row[4], row[5]]
+                    self.my_tree.insert(parent='', index='end', iid=row, text="", values=row_to_list, tag="bg")
+                    self.my_tree.tag_configure("bg", background="#f0fff0")
+        except InterruptedError:
+            messagebox.showinfo("Thông báo", "Điền vào mã sản phẩm hoặc tên sản phẩm")
