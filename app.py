@@ -6,6 +6,8 @@ from abc import ABC, abstractmethod
 from helpers import *
 from PIL import ImageTk, Image
 
+from main import MainApplication
+
 globrole = 1
 
 
@@ -124,6 +126,8 @@ class DangNhapWindow(tk.Toplevel):
             if nguoi_dung[5] == chuc_vu:
                 messagebox.showinfo('OK', f'Đăng nhập {chuc_vu} thành công')
                 self.destroy()
+                admin_window = AdminWindow()
+                admin_window.deiconify()
             else:
                 messagebox.showinfo('Error', f'Chức vụ không đúng!')
         else:
@@ -304,7 +308,6 @@ class RegisterWindow(tk.Toplevel):
 class AdminWindow(tk.Toplevel):
     def __init__(self):
         super().__init__()
-
         self.frame = tk.Frame(self, bg="#006400")
         self.frame.pack()
         self.Frame1 = tk.LabelFrame(self.frame, bg="white", height=180, width=700, borderwidth=2)
@@ -383,6 +386,8 @@ class AdminWindow(tk.Toplevel):
         self.my_tree.heading("NUOCSX", text="NƯỚC SẢN XUẤT", anchor='w')
         self.my_tree.heading("HANSD", text="HẠN SỬ DỤNG", anchor='w')
         self.my_tree.heading("GIA", text="GIÁ", anchor='w')
+
+        self.mainloop()
 
         if globrole == 0:
             self.updateButton.destroy()
